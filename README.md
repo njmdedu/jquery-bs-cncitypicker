@@ -1,4 +1,4 @@
-### jquery-city-picker
+### jquery-bs-cncitypicker
 
 ##Document
 
