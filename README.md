@@ -62,19 +62,13 @@ district : {
 
 ```
 getNameByCode //根据code获取相应名称城市
-
-eg:
-city.getNameByCode(code);
+eg:city.getNameByCode(code);
 
 getCodeAndName  //获取选中的代码和名称
-
-eg:
-city.getCodeAndName();
+eg:city.getCodeAndName();
 
 getProvinceAndCityByDistrictCode  //根据区县code获取所在的省和市
-
-eg:
-city.getProvinceAndCityByDistrictCode(code);
+eg:city.getProvinceAndCityByDistrictCode(code);
 ```
 
 ### Events：
