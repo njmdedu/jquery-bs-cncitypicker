@@ -39,7 +39,7 @@
   </body>
 </html>
 ```
-### 属性：
+### Property：
 
 ```
 validate:false,
@@ -58,7 +58,7 @@ district : {
 
 ```
 
-### 方法：
+### Methods
 
 ```
 getNameByCode
@@ -68,7 +68,7 @@ getCodeAndName
 getProvinceAndCityByDistrictCode
 ```
 
-### 事件：
+### Events：
 
 ```
 onProvinceChange
