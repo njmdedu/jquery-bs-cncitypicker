@@ -61,20 +61,20 @@ district : {
 ### Methods
 
 ```
-getNameByCode
+getNameByCode //根据code获取相应名称城市
 
-getCodeAndName
+getCodeAndName  //获取选中的代码和名称
 
-getProvinceAndCityByDistrictCode
+getProvinceAndCityByDistrictCode  //根据区县获取所在的省和市
 ```
 
 ### Events：
 
 ```
-onProvinceChange
+onProvinceChange  //当改变省份时触发事件
 
-onCityChange
+onCityChange  //当改变城市时触发事件
 
-onDistrictChange
+onDistrictChange  //当改变区域时触发事件
 
 ```
