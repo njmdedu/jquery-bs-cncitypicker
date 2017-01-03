@@ -63,18 +63,38 @@ district : {
 ```
 getNameByCode //根据code获取相应名称城市
 
+eg:
+city.getNameByCode(code);
+
 getCodeAndName  //获取选中的代码和名称
 
-getProvinceAndCityByDistrictCode  //根据区县获取所在的省和市
+eg:
+city.getCodeAndName();
+
+getProvinceAndCityByDistrictCode  //根据区县code获取所在的省和市
+
+eg:
+city.getProvinceAndCityByDistrictCode(code);
 ```
 
 ### Events：
 
 ```
 onProvinceChange  //当改变省份时触发事件
-
-onCityChange  //当改变城市时触发事件
-
+onCityChange      //当改变城市时触发事件
 onDistrictChange  //当改变区域时触发事件
+
+eg:
+$('#cncity').cncitypicker({
+    onProvinceChange:function(){
+
+    },
+    onCityChange:function(){
+
+    },
+    onDistrictChange:function(){
+
+    }
+});
 
 ```
