@@ -72,12 +72,21 @@ district : {
 
 ## Events
 
-```
-onProvinceChange  //当改变省份时触发事件
-onCityChange      //当改变城市时触发事件
-onDistrictChange  //当改变区域时触发事件
+### onProvinceChange
+
+当改变省份时触发事件
+
+### onCityChange
+
+当改变城市时触发事件
+
+### onDistrictChange
+
+当改变区域时触发事件
 
 eg:
+
+```
 $('#cncity').cncitypicker({
     onProvinceChange:function(){
 
@@ -89,6 +98,5 @@ $('#cncity').cncitypicker({
 
     }
 });
-
 ```
 [⬆ back to top](#table-of-contents)
