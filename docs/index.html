@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>jquery-bs-citypicker</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href=".css/index.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
   </head>
   <body>
     <div class="container ">
@@ -40,17 +40,23 @@
     <script src="./js/jquery.bs.cncitypicker.js"></script>
     <script>
       var ci = $('#cncity1').cncitypicker({
+        autoSelectFromUrl:true,
+        selectFromUrl:{
+          province_param:'province_code',
+          city_param:'city_code',
+          district_param:'district_code',
+        },
         validate:true,
         province: {
-          value:'110000',
+          code:'110000',
           placeholder:'-请选择省-'
         },
         city : {
-          value:'110100',
+          code:'110100',
           placeholder:'-请选择市-'
         },
         district : {
-          value:'110101',
+          code:'110101',
           placeholder:'-请选择县-'
         },
         onProvinceChange:function(){

@@ -1,26 +1,44 @@
 /*
 1、引用类型问题用$.extend([],obj1,obj2)解决
 2、事件代理问题用$.proxy(function,this)解决
+3、注意：autoSelect和autoSelectFromUrl如果都设置成true，优先autoSelectFromUrl
 */
 ;(function($, window, document,undefined) {
     var CnCityPicker = function(ele, opt) {
         this.$element = $(ele),
         this.defaults = {
             //---------------------------------------属性--------------------------------------
+            //设置从url里获取的参数
+            autoSelectFromUrl: false,
+            selectFromUrl:{
+              province_param: 'province',
+              city_param: 'city',
+              district_param: 'district',
+            },
+
+            validate: false,
             //暂时不需要默认选中功能
-            autoSelect:false,
-            validate:false,
+            autoSelect: false,
             province: {
-              value:'',
-              placeholder:'-请选择-'
+              code: '',
+              placeholder: '-请选择-'
             },
-            city : {
-              value:'',
-              placeholder:'-请选择-'
+            city: {
+              code: '',
+              placeholder: '-请选择-'
             },
-            district : {
-              value:'',
-              placeholder:'-请选择-'
+            district: {
+              code: '',
+              placeholder: '-请选择-'
+            },
+            onProvinceChange: function(){
+
+            },
+            onCityChange: function(){
+
+            },
+            onDistrictChange: function(){
+
             }
         },
         this.options = $.extend({}, this.defaults, opt),
@@ -45,16 +63,26 @@
             $.each(['province', 'city', 'district'], function(i, type){
               self['$'+type] = $selects.eq(i);
             });
+            //-------------------------------------------------
+            if(self.options.autoSelectFromUrl){
+              self.options.province.code = self.getParamFromUrl(self.options.selectFromUrl.province_param);
+              self.options.city.code = self.getParamFromUrl(self.options.selectFromUrl.city_param);
+              self.options.district.code = self.getParamFromUrl(self.options.selectFromUrl.district_param);
+            }
+            //------------------------------------------------
             self._event();
+            //------------------------------------------------
             self.reset();
+            //------------------------------------------------
             if(self.options.validate){
               setInterval(function () {
                 self._validate();
               }, 100);
             }
+
+            //self.options.autoSelectFromUrl = false;
             return self;
         },
-        //---------------------------------------事件---------------------------------------------------
         _event: function(){
           var self = this;
           if (self.$province) {
@@ -162,7 +190,7 @@
                   name : obj.name,
                   code : obj.code,
                   sub : obj.sub,
-                  selected: obj.code === code
+                  selected: self.options.autoSelectFromUrl && obj.code == self.options.province.code
                 });
               });
               self.pcd.provinces = $.extend([], data);
@@ -175,7 +203,7 @@
                       name : o.name,
                       code : o.code,
                       sub : o.sub,
-                      selected: o.code === code
+                      selected: self.options.autoSelectFromUrl && o.code == self.options.city.code
                     });
                   })
                   return false;
@@ -191,7 +219,7 @@
                       name : o.name,
                       code : o.code,
                       sub : o.sub,
-                      selected: o.code === code
+                      selected: self.options.autoSelectFromUrl && o.code == self.options.district.code
                     });
                   })
                   return false;
@@ -211,6 +239,31 @@
             }
           });
           return obj;
+        },
+        //验证select是否选中，根据用户设置的validate来判断，默认validata=false
+        _validate:function(){
+          var self = this;
+
+          var province = self.$province.find(':selected').data('code').toString();
+          var city = self.$city.find(':selected').data('code').toString();
+          var district = self.$district.find(':selected').data('code').toString();
+
+          if(!province){
+            self.$province.addClass('has-error');
+          }else{
+            self.$province.removeClass('has-error');
+          }
+          if(!city){
+            self.$city.addClass('has-error');
+          }else{
+            self.$city.removeClass('has-error');
+          }
+          if(!district){
+            self.$district.addClass('has-error');
+          }else{
+            self.$district.removeClass('has-error');
+          }
+          //todo:这里要不要释放内存
         },
         //---------------------------------------公有方法--------------------------------------
         reset:function(){
@@ -311,31 +364,14 @@
           names.push(reData.name);
           return names.join(',');
         },
-        //验证select是否选中，根据用户设置的validate来判断，默认validata=false
-        _validate:function(){
-          var self = this;
-
-          var province = self.$province.find(':selected').data('code').toString();
-          var city = self.$city.find(':selected').data('code').toString();
-          var district = self.$district.find(':selected').data('code').toString();
-
-          if(!province){
-            self.$province.addClass('has-error');
-          }else{
-            self.$province.removeClass('has-error');
-          }
-          if(!city){
-            self.$city.addClass('has-error');
-          }else{
-            self.$city.removeClass('has-error');
-          }
-          if(!district){
-            self.$district.addClass('has-error');
-          }else{
-            self.$district.removeClass('has-error');
-          }
-          //todo:这里要不要释放内存
-        }
+        //从url中获取参数是param的值
+        getParamFromUrl: function(param){
+          var reg = new RegExp("(^|&)"+ param +"=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if(r != null){
+            return unescape(r[2]);
+          }return '';
+        },
     }
 
     $.fn.cncitypicker = function(options) {
