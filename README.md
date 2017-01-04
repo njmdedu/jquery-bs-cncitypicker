@@ -4,9 +4,9 @@ A simple jQuery plugin for picking provinces, cities and districts of China.
 
 ## Table of contents
 
-- [Property](#Property)
-- [Methods](#Methods)
-- [Events](#Events)
+- [Property](#property)
+- [Methods](#methods)
+- [Events](#events)
 
 ## API
 
@@ -35,8 +35,6 @@ Usage:
 ```
 var city = $('#cncity').cncitypicker();
 ```
-
-[⬆ back to top](#table-of-contents)
 
 ## Property
 
@@ -91,3 +89,4 @@ $('#cncity').cncitypicker({
 });
 
 ```
+[⬆ back to top](#table-of-contents)
