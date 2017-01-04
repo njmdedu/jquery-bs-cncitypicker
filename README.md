@@ -10,7 +10,7 @@ A simple jQuery plugin for picking provinces, cities and districts of China.
 
 ## API
 
-## Requirement:
+### Requirement:
 
 Html:
 ```
@@ -57,16 +57,18 @@ district : {
 
 ## Methods
 
-```
-getNameByCode //根据code获取相应名称城市
-eg:city.getNameByCode(code);
+### getNameByCode(code)
 
-getCodeAndName  //获取选中的代码和名称
-eg:city.getCodeAndName();
+根据code获取相应名称城市
 
-getProvinceAndCityByDistrictCode  //根据区县code获取所在的省和市
-eg:city.getProvinceAndCityByDistrictCode(code);
-```
+### getCodeAndName()
+
+获取选中的代码和名称
+
+### getProvinceAndCityByDistrictCode(code)
+
+根据区县code获取所在的省和市
+
 
 ## Events
 
