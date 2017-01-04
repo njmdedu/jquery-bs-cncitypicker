@@ -1,4 +1,4 @@
-### jquery-bs-cncitypicker
+# jquery-bs-cncitypicker
 
 A simple jQuery plugin for picking provinces, cities and districts of China.
 
@@ -10,8 +10,7 @@ A simple jQuery plugin for picking provinces, cities and districts of China.
 
 ## API
 
-
-### Requirement:
+## Requirement:
 
 Html:
 ```
@@ -37,7 +36,7 @@ Usage:
 var city = $('#cncity').cncitypicker();
 ```
 
-### Property
+## Property
 
 ```
 validate:false,
@@ -56,7 +55,7 @@ district : {
 
 ```
 
-### Methods
+## Methods
 
 ```
 getNameByCode //根据code获取相应名称城市
@@ -69,7 +68,7 @@ getProvinceAndCityByDistrictCode  //根据区县code获取所在的省和市
 eg:city.getProvinceAndCityByDistrictCode(code);
 ```
 
-### Events
+## Events
 
 ```
 onProvinceChange  //当改变省份时触发事件
