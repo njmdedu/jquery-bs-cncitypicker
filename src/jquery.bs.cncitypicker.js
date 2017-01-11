@@ -49,7 +49,9 @@
           'provinces' : [],
           'citys' : [],
           'districts' : []
-        }
+        };
+
+        this._init();
     }
     //方法
     CnCityPicker.prototype = {
@@ -374,8 +376,28 @@
         },
     }
 
-    $.fn.cncitypicker = function(options) {
-        var cncitypicker = new CnCityPicker(this, options);
-        return cncitypicker._init();
-    }
+    $.fn.cncitypicker = function(option) {
+      var data,result;
+      this.each(function() {
+        const $this = $(this);
+        //var data = $this.data('superselect');
+        data = $this.data('cncitypicker');
+
+        if (!data) {
+          const options = $.extend({}, $this.data(), $.isPlainObject(option) && option);
+          $this.data('cncitypicker', (data = new CnCityPicker(this, options)));
+        }
+
+        if (typeof option === 'string') {
+          //获取原型链中的方法
+          const fn = data[option];
+
+          if ($.isFunction(fn)) {
+            result = fn.apply(data);
+          }
+        }
+    });
+    //return typeof result !== 'undefined' ? result : this;
+    return typeof result !== 'undefined' ? result : data;
+  }
 })(jQuery, window, document);
